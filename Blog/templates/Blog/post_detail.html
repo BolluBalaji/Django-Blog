@@ -1,0 +1,28 @@
+
+{% extends "Blog/base.html" %}
+{% block content %}
+<div class="post-body">
+  <div class="post-title">
+    <a href="#"><h2>{{object.title}}</h2></a>
+    <hr style="width: 80%; background-color: rgba(255,255,255,0.5);">
+    <br>
+    <div class="post-content">
+      <div class="post-details">
+        <a href="{% url 'user-posts' post.author.username %}"><strong style="color: skyblue; font-size: 15px;">{{object.author}} </strong></a>
+        <em style="color: steelblue;"> | {{object.date_posted|date:" F d, Y"}} </em>
+        <img class="rounded-circle" style="width: 100px; height: 100px;" src="{{object.author.profile.image.url}}" alt="">
+      </div>
+      <div class="post">
+        <p>{{object.content}}</p>
+      </div>
+      {% if object.author == user %}
+      <div class="container">
+        <a href="{% url 'post-update' object.pk %}" class="btn btn-secondary">Update</a>
+        <a href="{% url 'post-delete' object.pk %}" class="btn btn-danger ml-3">Delete</a>
+      </div>
+      {% endif %}
+      <br>
+    </div>
+  </div>
+</div>
+{% endblock content %}

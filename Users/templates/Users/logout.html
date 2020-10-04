@@ -1,0 +1,21 @@
+{% extends "Blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <form action="" method="post">
+    <div class="jumbotron" style="width: 75%; margin-top: 5%;">
+      <h3 style="color: white; text-align: center; margin-top: -3%;">You are Signed out Sucessfully!!! </h3>
+      <h3 style="color: lightgreen; text-align: center;">Login Again</h3>
+       {% csrf_token %}
+        <div class="form">
+         {{form | crispy}}
+         <a href = "{% url 'login' %}"<button class="btn btn-primary" value="Submit">Sign In Again</button></a><br><br>
+        </div>
+      <div class="border-top pt-3">
+          <small class="text-info">
+              Need Another Account? <a class="ml-2" href="{% url 'register' %}">Sign Up</a>
+          </small>
+      </div>
+  </div>
+
+  </form>
+{% endblock content %}

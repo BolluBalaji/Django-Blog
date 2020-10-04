@@ -1,0 +1,24 @@
+{% extends "Blog/base.html" %}
+{% block content %}
+    <h2 style="text-align: center;">Posts by {{view.kwargs.username}}</h2>
+    {% for post in posts %}
+    <div class="post-body">
+      <div class="post-title">
+        <a href="{% url 'post-detail' post.id %}"><h2>{{post.title}}</h2></a>
+        <hr style="width: 80%; background-color: rgba(255,255,255,0.5);">
+        <br>
+        <div class="post-content">
+          <div class="post-details">
+            <a href="{% url 'user-posts' post.author.username %}"><strong style="color: skyblue; font-size: 15px;">{{post.author}} </strong></a>
+            <em style="color: steelblue;"> | {{post.date_posted|date:" F d, Y"}} </em>
+            <img class="rounded-circle" style="width: 100px; height: 100px;" src="{{post.author.profile.image.url}}" alt="">
+          </div>
+          <div class="post">
+            <p>{{post.content}}</p>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+{% endblock content %}

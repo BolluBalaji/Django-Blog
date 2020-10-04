@@ -1,0 +1,21 @@
+{% extends "Blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="border-top pt-3">
+    <div class="profile">
+        <img src="{{user.profile.image.url}}" alt="Profile">
+        <h1>{{user.username}}</h1><br>
+        <h2>{{user.email}}</h2>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data">
+      <div class="jumbotron">
+         {% csrf_token %}
+          <div class="form">
+           {{u_form | crispy}}
+           {{p_form | crispy}}
+           <button class="btn btn-primary" type="submit" value="Submit">Update</button><br><br>
+          </div>
+      </div>
+    </form>
+  </div>
+{% endblock content %}
